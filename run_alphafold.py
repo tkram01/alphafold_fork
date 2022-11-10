@@ -160,7 +160,7 @@ flags.DEFINE_boolean('use_gpu_relax', False, 'Whether to relax on GPU. '
                      'recommended to enable if possible. GPUs must be available'
                      ' if this setting is enabled.')
 flags.DEFINE_boolean('dropout',False,'Make is_training=True to turn on drop out during inference to get more diversity')
-flags.DEFINE_boolean('dropout_structure_module',True, 'No dropout in structure module at inference')
+flags.DEFINE_boolean('dropout_structure_module',True, 'Dropout in structure module at inference')
 flags.DEFINE_boolean('output_all_results',False,'Output original results pickle (LARGE..'
                      'only recommended if you really know you need any of the following:'
                      'distogram, experimentally_resolved, masked_msa,aligned_confidence_probs')
@@ -264,7 +264,8 @@ def predict_structure(
       with open(result_output_path, 'wb') as f:
         pickle.dump(prediction_result, f, protocol=4)
     else:
-      keys_to_remove=['distogram', 'experimentally_resolved', 'masked_msa','aligned_confidence_probs']
+#      keys_to_remove=['distogram', 'experimentally_resolved', 'masked_msa','aligned_confidence_probs']
+      keys_to_remove=['experimentally_resolved', 'masked_msa','aligned_confidence_probs']
       d={}
       for k in prediction_result.keys():
         if k not in keys_to_remove:
