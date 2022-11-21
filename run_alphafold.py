@@ -43,7 +43,14 @@ import numpy as np
 
 logging.set_verbosity(logging.INFO)
 
-data_dir = '/proj/wallner-b/apps/alphafoldv2.2.0/alphafold_data/'
+
+alphafold_path = os.path.dirname(os.path.realpath(__file__))
+data_dir = alphafold_path + "/alphafold_data"
+
+
+#data_dir = '/proj/wallner-b/apps/alphafoldv2.2.0/alphafold_data/'
+#if not os.path.exists(data_dir):
+#  data_dir = '/proj/wallner/apps/alphafoldv2.2.0/alphafold_data/'
 
 DOWNLOAD_DIR= data_dir
 uniprot_database_path = os.path.join(
