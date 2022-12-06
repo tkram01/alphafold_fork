@@ -45,12 +45,12 @@ logging.set_verbosity(logging.INFO)
 
 
 alphafold_path = os.path.dirname(os.path.realpath(__file__))
+#Default: look in the alphafold path for the alphafold_data folder (or symmlink)
 data_dir = alphafold_path + "/alphafold_data"
-
-
-#data_dir = '/proj/wallner-b/apps/alphafoldv2.2.0/alphafold_data/'
-#if not os.path.exists(data_dir):
-#  data_dir = '/proj/wallner/apps/alphafoldv2.2.0/alphafold_data/'
+#data_dir =    #set it to the location of the alphafold_data or make a symmlink in the folder of this script.
+if os.path.exists(data_dir):
+  print(f'Set the data_dir in {__file__} to the location of "alphafold_data" or make a symmlink to it in the {alphafold_path} folder')
+  sys.exit(1)
 
 DOWNLOAD_DIR= data_dir
 uniprot_database_path = os.path.join(
@@ -123,7 +123,7 @@ flags.DEFINE_enum('db_preset', 'full_dbs',
                   'Choose preset MSA database configuration - '
                   'smaller genetic database config (reduced_dbs) or '
                   'full genetic database config  (full_dbs)')
-flags.DEFINE_enum('model_preset', 'monomer',config.MODEL_PRESETS.keys(),
+flags.DEFINE_enum('model_preset', 'monomer',config.MODEL_PRESETS.keys(), #presets are defined in the config/BW
                   #['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer','multimer_v1','multimer_v2','multimer_all'],
                   'Choose preset model configuration - the monomer model, '
                   'the monomer model with extra ensembling, monomer model with '
@@ -137,40 +137,44 @@ flags.DEFINE_integer('random_seed', None, 'The random seed for the data '
                      'that even if this is set, Alphafold may still not be '
                      'deterministic, because processes like GPU inference are '
                      'nondeterministic.')
-flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
-                     'predictions (each with a different random seed) will be '
-                     'generated per model. E.g. if this is 2 and there are 5 '
-                     'models then there will be 10 predictions per input. '
-                     'Note: this FLAG only applies if model_preset=multimer')
+#Flag replaced by -nstruct for all model_presets /BW
+#flags.DEFINE_integer('num_multimer_predictions_per_model', 5, 'How many '
+#                     'predictions (each with a different random seed) will be '
+#                     'generated per model. E.g. if this is 2 and there are 5 '
+#                     'models then there will be 10 predictions per input. '
+#                     'Note: this FLAG only applies if model_preset=multimer')
 flags.DEFINE_integer('nstruct', 1, 'How many '
                      'predictions (each with a different random seed) will be '
                      'generated per model. E.g. if this is 2 and there are 5 '
                      'models then there will be 10 predictions per input. ')
-flags.DEFINE_integer('nstruct_start',1, 'model to start with, can be used to parallize jobs, '
+flags.DEFINE_integer('nstruct_start',1, 'model to start with, can be used to parallelize jobs, '
                      'e.g --nstruct 20 --nstruct_start 20 will only make model _20'
                      'e.g --nstruct 21 --nstruct_start 20 will make model _20 and _21 etc.')
-flags.DEFINE_boolean('use_precomputed_msas', True, 'Whether to read MSAs that '
+flags.DEFINE_boolean('use_precomputed_msas', True, 'Whether to read MSAs that ' #default changed to True /BW
                      'have been written to disk instead of running the MSA '
                      'tools. The MSA files are looked up in the output '
                      'directory, so it must stay the same between multiple '
                      'runs that are to reuse the MSAs. WARNING: This will not '
                      'check if the sequence, database or configuration have '
                      'changed.')
-flags.DEFINE_boolean('run_relax', False, 'Whether to run the final relaxation '
-                     'step on the predicted models. Turning relax off might '
-                     'result in predictions with distracting stereochemical '
-                     'violations but might help in case you are having issues '
+flags.DEFINE_string('input_msa',None,'Input msa to use instead of the default')
+flags.DEFINE_boolean('no_templates',False, 'will not use any template, will be faster than filter by date')
+flags.DEFINE_boolean('seq_only', False, 'exist after seq search')
+flags.DEFINE_boolean('run_relax', False, 'Whether to run the final relaxation ' #default changed to False to save time/BW
+                     'step on the predicted models. Turning relax off might '   #use the run_relax_from_results_pkl.py to
+                     'result in predictions with distracting stereochemical '   #run relax for particular models.
+                     'violations but might help in case you are having issues ' #
                      'with the relaxation stage.')
 flags.DEFINE_integer('max_recycles', 3,'Max recycles')
 flags.DEFINE_boolean('use_gpu_relax', False, 'Whether to relax on GPU. '
                      'Relax on GPU can be much faster than CPU, so it is '
                      'recommended to enable if possible. GPUs must be available'
                      ' if this setting is enabled.')
-flags.DEFINE_boolean('dropout',False,'Make is_training=True to turn on drop out during inference to get more diversity')
+flags.DEFINE_boolean('dropout',False,'Turn on drop out during inference to get more diversity')
 flags.DEFINE_boolean('dropout_structure_module',True, 'Dropout in structure module at inference')
 flags.DEFINE_boolean('output_all_results',False,'Output original results pickle (LARGE..'
                      'only recommended if you really know you need any of the following:'
-                     'distogram, experimentally_resolved, masked_msa,aligned_confidence_probs')
+                     'experimentally_resolved, masked_msa,aligned_confidence_probs')
 flags.DEFINE_list('models_to_use',None, 'specify which models in model_preset that should be run')
 
 
@@ -218,7 +222,9 @@ def predict_structure(
       input_fasta_path=fasta_path,
       msa_output_dir=msa_output_dir)
   timings['features'] = time.time() - t_0
-
+  if FLAGS.seq_only:
+    logging.info('Exiting since --seq_only is True... ')
+    sys.exit()
   # Write out features as a pickled dictionary.
   features_output_path = os.path.join(output_dir, 'features.pkl')
   with open(features_output_path, 'wb') as f:
@@ -414,7 +420,9 @@ def main(argv):
       small_bfd_database_path=FLAGS.small_bfd_database_path,
       template_searcher=template_searcher,
       template_featurizer=template_featurizer,
+      no_templates=FLAGS.no_templates,
       use_small_bfd=use_small_bfd,
+      input_msa=FLAGS.input_msa,
       use_precomputed_msas=FLAGS.use_precomputed_msas)
 
   if run_multimer_system:
