@@ -48,7 +48,8 @@ alphafold_path = os.path.dirname(os.path.realpath(__file__))
 #Default: look in the alphafold path for the alphafold_data folder (or symmlink)
 data_dir = alphafold_path + "/alphafold_data"
 #data_dir =    #set it to the location of the alphafold_data or make a symmlink in the folder of this script.
-if os.path.exists(data_dir):
+if not os.path.exists(data_dir):
+  print(f'data_dir={data_dir}')
   print(f'Set the data_dir in {__file__} to the location of "alphafold_data" or make a symmlink to it in the {alphafold_path} folder')
   sys.exit(1)
 
