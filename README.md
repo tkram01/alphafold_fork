@@ -107,18 +107,23 @@ https://storage.googleapis.com/alphafold/alphafold_params_2022-01-19.tar
 
 
 1.  You can control which AlphaFold model to run by adding the
-    `--model_preset=` flag. We provide the following models:
-
-    * **monomer**: This is the original model used at CASP14 with no ensembling.
-
-
-    * **monomer\_ptm**: This is the original CASP14 model fine tuned with the
-      pTM head, providing a pairwise confidence measure. It is slightly less
-      accurate than the normal monomer model.
-
+    `--model_preset=` flag. 
+    
     * **multimer\_v1**: will run mulitmer_v1
     
     * **multimer\_v2**: will run mulitmer_v2 
+    
+    * **multimer\_all**: will run mulitmer_v1 and mulitmer_v2 
+
+    * **multimer**: will default to mulitmer_v2 
+    
+    The monomer flags also works but are not used by the multimer method:
+    
+    * **monomer**: The original model
+
+    * **monomer\_ptm**: Model with the pTM head, providing a pairwise confidence measure. 
+   
+    * **monomer_all**: Both original and pTM 
       
 
 1.  You can control MSA speed/quality tradeoff by adding
