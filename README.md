@@ -136,17 +136,9 @@ https://storage.googleapis.com/alphafold/alphafold_params_2022-01-19.tar
 
     *   **full\_dbs**: This runs with all genetic databases used at CASP14.
 
-    Running the command above with the `monomer` model preset and the
-    `reduced_dbs` data preset would look like this:
-
-    ```bash
-    python3 docker/run_docker.py \
-      --fasta_paths=T1050.fasta \
-      --max_template_date=2020-05-14 \
-      --model_preset=monomer \
-      --db_preset=reduced_dbs \
-      --data_dir=$DOWNLOAD_DIR
-    ```
+    The method is using the `full_dbs` setting.
+    
+   
 
 ### Running AlphaFold-Multimer
 
@@ -158,7 +150,7 @@ All steps are the same as when running the monomer system, but you will have to
 An example that folds a protein complex `multimer.fasta`:
 
 ```bash
-python3 docker/run_docker.py \
+python3 run_alphafold.py \
   --fasta_paths=multimer.fasta \
   --max_template_date=2020-05-14 \
   --model_preset=multimer \
