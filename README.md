@@ -1,8 +1,13 @@
-![header](imgs/header.jpg)
+# AlphaFold with aggressive sampline
 
-# AlphaFold
+This package provides an implementation of the `Wallner` method that was the best 
+method in mulitmer prediction in CASP15.
 
-This package provides an implementation of the inference pipeline of AlphaFold
+It is based on the AlphaFold system developed by DeepMeed.
+
+(https://github.com/deepmind/alphafold/)
+
+inference pipeline of AlphaFold
 v2.0. This is a completely new model that was entered in CASP14 and published in
 Nature. For simplicity, we refer to this model as AlphaFold throughout the rest
 of this document.
