@@ -238,7 +238,6 @@ python3 docker/run_docker.py \
 ```
 
 
-
 #### Folding multiple multimers one after another
 
 Say we have a two multimers, `multimer1.fasta` and `multimer2.fasta`.
@@ -256,20 +255,24 @@ python3 docker/run_docker.py \
 ### output
 
 The outputs will be saved in a subdirectory of the directory provided via the
-`--output_dir` flag of `run_docker.py` (defaults to `/tmp/alphafold/`). The
-outputs include the computed MSAs, unrelaxed structures, relaxed structures,
+`--output_dir`. The outputs compared to regular AlphaFold have been scaled down
+to allow massive sampling it includes the computed MSAs, unrelaxed structures, and 
+selective model outputs. Relaxing the structures is default turned off to save time
+and instead the script `run_relax_from_results_pkl.py` is provided to allow relaxing
+selected structures using the result pickled 
+
+, relaxed structures,
 ranked structures, raw model outputs, prediction metadata, and section timings.
 The `--output_dir` directory will have the following structure:
 
 ```
 <target_name>/
     features.pkl
-    ranked_{0,1,2,3,4}.pdb
+    ranked_{0:N}.pdb # legacy included
     ranking_debug.json
-    relaxed_model_{1,2,3,4,5}.pdb
-    result_model_{1,2,3,4,5}.pkl
+    result_model_{1:N}.pkl
     timings.json
-    unrelaxed_model_{1,2,3,4,5}.pdb
+    unrelaxed_model_{1:N}.pdb
     msas/
         bfd_uniclust_hits.a3m
         mgnify_hits.sto
