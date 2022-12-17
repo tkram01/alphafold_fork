@@ -304,12 +304,12 @@ The contents of each output file are as follows:
     tool hits that were used to construct the input MSA.
 *   `result_model_*.pkl.json` – A JSON format text file with the scores `pTM`, 
     `ipTM`, and `ranking_confidence` to enable fast retrieval without the need to 
-    read the large `result_model_*.pkl` file.
+    read the large `result_model_*.pkl` file. [NEW]
 *   `result_model_*.pkl` – A `pickle` file containing a nested dictionary of the
     various NumPy arrays directly produced by the model. From the original produced
     by AlphaFold the following data structures are removed: `experimentally_resolved`, 
     `masked_msa`, `aligned_confidence_probs` to save space (unless you run with the
-    `--output_all_results` flag). The dictionary contains the following:
+    `--output_all_results` flag). The dictionary contains the following: [MODIFIED]
 
     *   Distograms (`distogram/logits` contains a NumPy array of shape [N_res,
         N_res, N_bins] and `distogram/bin_edges` contains the definition of the
