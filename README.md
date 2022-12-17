@@ -9,11 +9,11 @@ https://github.com/deepmind/alphafold/
 
 ## Setup
 
-The setup is identical to regular AlphaFold. If have already setup of AlphaFold you only need to change the `data_dir` in `run_alphafold.py` to point to the location of `alphafold_data` containing all the databases and model parameters.
+The setup is identical to regular AlphaFold. If have already setup of AlphaFold you only need to change the `data_dir` in `run_alphafold.py` to point to the location of `$DOWNLOAD_DIR` containing all the databases and model parameters.
 
 If you are setting up AlphaFold for the first time you can follow the instructions here: https://github.com/deepmind/alphafold/
 
-But are included below for simplicity
+But a shorter version are included below for simplicity
 
 1.  Download genetic databases (see below).
 1.  Download model parameters (see below).
