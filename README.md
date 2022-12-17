@@ -3,20 +3,11 @@
 This package provides an implementation of the `Wallner` method that was the best 
 method in mulitmer prediction in CASP15.
 
-It is based on the AlphaFold system developed by DeepMeed.
+It is based on the AlphaFold system developed by DeepMind.
 
-(https://github.com/deepmind/alphafold/)
+https://github.com/deepmind/alphafold/
 
-inference pipeline of AlphaFold
-v2.0. This is a completely new model that was entered in CASP14 and published in
-Nature. For simplicity, we refer to this model as AlphaFold throughout the rest
-of this document.
 
-We also provide an implementation of AlphaFold-Multimer. This represents a work
-in progress and AlphaFold-Multimer isn't expected to be as stable as our monomer
-AlphaFold system.
-[Read the guide](#updating-existing-alphafold-installation-to-include-alphafold-multimers)
-for how to upgrade and update code.
 
 Any publication that discloses findings arising from using this source code or the model parameters should [cite](#citing-this-work) the
 [AlphaFold  paper](https://doi.org/10.1038/s41586-021-03819-2) and, if
