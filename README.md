@@ -303,8 +303,10 @@ The contents of each output file are as follows:
 *   `msas/` - A directory containing the files describing the various genetic
     tool hits that were used to construct the input MSA.
 *   `result_model_*.pkl` – A `pickle` file containing a nested dictionary of the
-    various NumPy arrays directly produced by the model. In addition to the
-    output of the structure module, this includes auxiliary outputs such as:
+    various NumPy arrays directly produced by the model. From the original produced
+    by AlphaFold the following data structures are removed: `experimentally_resolved`, 
+    `masked_msa`, `aligned_confidence_probs` to save space (unless you run with the
+    `--output_all_results` flag). The dictionary contains the following:
 
     *   Distograms (`distogram/logits` contains a NumPy array of shape [N_res,
         N_res, N_bins] and `distogram/bin_edges` contains the definition of the
