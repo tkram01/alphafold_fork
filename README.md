@@ -8,53 +8,14 @@ It is based on the AlphaFold system developed by DeepMind.
 https://github.com/deepmind/alphafold/
 
 
-
-Any publication that discloses findings arising from using this source code or the model parameters should [cite](#citing-this-work) the
-[AlphaFold  paper](https://doi.org/10.1038/s41586-021-03819-2) and, if
-applicable, the [AlphaFold-Multimer paper](https://www.biorxiv.org/content/10.1101/2021.10.04.463034v1).
-
-Please also refer to the
-[Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf)
-for a detailed description of the method.
-
-**You can use a slightly simplified version of AlphaFold with
-[this Colab
-notebook](https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb)**
-or community-supported versions (see below).
-
-If you have any questions, please contact the AlphaFold team at
-[alphafold@deepmind.com](mailto:alphafold@deepmind.com).
-
-![CASP14 predictions](imgs/casp14_predictions.gif)
-
 ## First time setup
 
-The following steps are required in order to run AlphaFold:
+The setup is identical to regular AlphaFold https://github.com/deepmind/alphafold/.
+But are included below for simplicity
 
-1.  Install [Docker](https://www.docker.com/).
-    *   Install
-        [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
-        for GPU support.
-    *   Setup running
-        [Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
 1.  Download genetic databases (see below).
 1.  Download model parameters (see below).
-1.  Check that AlphaFold will be able to use a GPU by running:
 
-    ```bash
-    docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
-    ```
-
-    The output of this command should show a list of your GPUs. If it doesn't,
-    check if you followed all steps correctly when setting up the
-    [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
-    or take a look at the following
-    [NVIDIA Docker issue](https://github.com/NVIDIA/nvidia-docker/issues/1447#issuecomment-801479573).
-
-If you wish to run AlphaFold using Singularity (a common containerization platform on HPC systems) we recommend using some of the
-third party Singularity setups as linked in
-https://github.com/deepmind/alphafold/issues/10 or
-https://github.com/deepmind/alphafold/issues/24.
 
 ### Genetic databases
 
