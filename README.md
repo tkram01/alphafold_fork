@@ -285,11 +285,11 @@ The contents of each output file are as follows:
     used by the models to produce the structures.
 *   `unrelaxed_model_*.pdb` – A PDB format text file containing the predicted
     structure, exactly as outputted by the model.
-*   `relaxed_model_*.pdb` – A PDB format text file containing the predicted
+*   [MODIFIED, relax is default off] `relaxed_model_*.pdb` – A PDB format text file containing the predicted
     structure, after performing an Amber relaxation procedure on the unrelaxed
     structure prediction (see Jumper et al. 2021, Suppl. Methods 1.8.6 for
     details).
-*   `ranked_*.pdb` – A PDB format text file containing the relaxed predicted
+*   [MODIFIED, legacy kept are unrelaxed default] `ranked_*.pdb` – A PDB format text file containing the relaxed predicted
     structures, after reordering by model confidence. Here `ranked_0.pdb` should
     contain the prediction with the highest confidence, and `ranked_4.pdb` the
     prediction with the lowest confidence. To rank model confidence, we use
@@ -302,14 +302,14 @@ The contents of each output file are as follows:
     each section of the AlphaFold pipeline.
 *   `msas/` - A directory containing the files describing the various genetic
     tool hits that were used to construct the input MSA.
-*   `result_model_*.pkl.json` – A JSON format text file with the scores `pTM`, 
+*   [NEW] `result_model_*.pkl.json` – A JSON format text file with the scores `pTM`, 
     `ipTM`, and `ranking_confidence` to enable fast retrieval without the need to 
-    read the large `result_model_*.pkl` file. [NEW]
-*   `result_model_*.pkl` – A `pickle` file containing a nested dictionary of the
+    read the relatively large `result_model_*.pkl` file. [NEW]
+*   [MODIFIED] `result_model_*.pkl` – A `pickle` file containing a nested dictionary of the
     various NumPy arrays directly produced by the model. From the original produced
     by AlphaFold the following data structures are removed: `experimentally_resolved`, 
     `masked_msa`, `aligned_confidence_probs` to save space (unless you run with the
-    `--output_all_results` flag). The dictionary contains the following: [MODIFIED]
+    `--output_all_results` flag). The dictionary contains the following: 
 
     *   Distograms (`distogram/logits` contains a NumPy array of shape [N_res,
         N_res, N_bins] and `distogram/bin_edges` contains the definition of the
