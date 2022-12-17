@@ -98,7 +98,7 @@ $DOWNLOAD_DIR/                             # Total: ~ 2.2 TB (download: 438 GB)
 is only downloaded if you download the reduced databases.
 
 ### Model parameters
-
+The method is using both v2.1.0 and v2.2.0 AlphaFold-Multimer model weights. Download them using the links below and extract them in the `params/` folder in the `$DOWNLOAD_DIR`.
 
 The v2.2.0 AlphaFold-Multimer model weights:
 https://storage.googleapis.com/alphafold/alphafold_params_2022-03-02.tar
