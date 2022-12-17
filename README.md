@@ -302,6 +302,9 @@ The contents of each output file are as follows:
     each section of the AlphaFold pipeline.
 *   `msas/` - A directory containing the files describing the various genetic
     tool hits that were used to construct the input MSA.
+*   `result_model_*.pkl.json` – A JSON format text file with the scores `pTM`, 
+    `ipTM`, and `ranking_confidence` to enable fast retrieval without the need to 
+    read the large `result_model_*.pkl` file.
 *   `result_model_*.pkl` – A `pickle` file containing a nested dictionary of the
     various NumPy arrays directly produced by the model. From the original produced
     by AlphaFold the following data structures are removed: `experimentally_resolved`, 
