@@ -1,4 +1,4 @@
-name: alphafold
+name: afsample
 channels:
   - conda-forge
   - defaults
@@ -111,4 +111,4 @@ dependencies:
     - werkzeug==2.0.2
     - wrapt==1.12.1
     - zipp==3.6.0
-prefix: /home/x_bjowa/.conda/envs/alphafold
+prefix: /home/x_bjowa/.conda/envs/afsample
