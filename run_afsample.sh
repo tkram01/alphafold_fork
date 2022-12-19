@@ -26,13 +26,13 @@ std_flags="
 python $AF_path/run_alphafold.py $std_flags --model_preset multimer_all --fasta_paths $fasta --output_dir $outfolder/ --nstruct 200 --dropout=True
 
 #generate 10x200 models using v1 & v2 using dropout and notemplates, the --suffix ensures the model names are different since outfolder is the same
-python$AF_path/ run_alphafold.py $std_flags --model_preset multimer_all --fasta_paths $fasta --output_dir $outfolder/ AF_models_dropout/ --nstruct 200 --dropout=True --no_templates --suffix no_templates
+python$AF_path/ run_alphafold.py $std_flags --model_preset multimer_all --fasta_paths $fasta --output_dir $outfolder/ AF_models_dropout/ --nstruct 200 --dropout=True --dropout_structure_module=False --no_templates --suffix no_templates
 
 #generate 5x200 models using v1 using dropout, notemplates, recycles 21, the --suffix ensures the model names are different since outfolder is the same
-python $AF_path/run_alphafold.py $std_flags --model_preset multimer_v1 --fasta_paths $fasta --output_dir $outfolder/ --nstruct 200 --dropout=True --no_templates --max_recycles 21 --suffix no_templates_r21
+python $AF_path/run_alphafold.py $std_flags --model_preset multimer_v1 --fasta_paths $fasta --output_dir $outfolder/ --nstruct 200 --dropout=True --dropout_structure_module=False --no_templates --max_recycles 21 --suffix no_templates_r21
 
 #generate 5x200 models using v2 using dropout, notemplates, recycles 9, the --suffix ensures the model names are different since outfolder is the same
-python $AF_path/run_alphafold.py $std_flags --model_preset multimer_v2 --fasta_paths $fasta --output_dir $outfolder/ --nstruct 200 --dropout=True --no_templates --max_recycles 9 --suffix no_templates_r9
+python $AF_path/run_alphafold.py $std_flags --model_preset multimer_v2 --fasta_paths $fasta --output_dir $outfolder/ --nstruct 200 --dropout=True --dropout_structure_module=False --no_templates --max_recycles 9 --suffix no_templates_r9
 
 #get the score for all models and return a sorted scorefile.
 python $AF_path/scores_from_json.py $fasta $outfolder/ > $outfolder/scores.sc

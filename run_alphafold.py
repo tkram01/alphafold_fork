@@ -279,8 +279,8 @@ def predict_structure(
       with open(result_output_path, 'wb') as f:
         pickle.dump(prediction_result, f, protocol=4)
     else:
-#      keys_to_remove=['distogram', 'experimentally_resolved', 'masked_msa','aligned_confidence_probs']
-      keys_to_remove=['experimentally_resolved', 'masked_msa','aligned_confidence_probs']
+      keys_to_remove=['distogram', 'experimentally_resolved', 'masked_msa','aligned_confidence_probs']
+#      keys_to_remove=['experimentally_resolved', 'masked_msa','aligned_confidence_probs']
       d={}
       for k in prediction_result.keys():
         if k not in keys_to_remove:

@@ -11,10 +11,10 @@ https://github.com/deepmind/alphafold/
 
 The setup is identical to regular AlphaFold. If have already setup of AlphaFold you only need to change the `data_dir` in `run_alphafold.py` to point to the location of `$DOWNLOAD_DIR` containing all the databases and model parameters.
 
-If you are setting up AlphaFold for the first time (a shorter version of adapted from: https://github.com/deepmind/alphafold/):
+If you are setting up AlphaFold for the first time (a shorter version adapted from: https://github.com/deepmind/alphafold/):
 
 1.  Download genetic databases (see below).
-1.  Download model parameters (see below).
+1.  Download model parameters, make sure you download multimer_v1 and mulitmer_v2 (see below).
 1.  Create a conda environment `conda env create -f afsample.yml`
 
 ### Genetic databases
