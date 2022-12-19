@@ -157,7 +157,8 @@ flags.DEFINE_boolean('use_precomputed_msas', True, 'Whether to read MSAs that ' 
                      'directory, so it must stay the same between multiple '
                      'runs that are to reuse the MSAs. WARNING: This will not '
                      'check if the sequence, database or configuration have '
-                     'changed.')
+                     'changed.'
+flags.DEFINE_string('suffix','','suffix to all model output, added before model counter.')
 flags.DEFINE_string('input_msa',None,'Input msa to use instead of the default')
 flags.DEFINE_boolean('no_templates',False, 'will not use any template, will be faster than filter by date')
 flags.DEFINE_boolean('seq_only', False, 'exist after seq search')
@@ -331,7 +332,7 @@ def predict_structure(
   for idx, (model_name, _) in enumerate(
       sorted(ranking_confidences.items(), key=lambda x: x[1], reverse=True)):
     ranked_order.append(model_name)
-    ranked_output_path = os.path.join(output_dir, f'ranked_{idx}.pdb')
+    ranked_output_path = os.path.join(output_dir, f'ranked_{FLAGS.suffix}_{idx}.pdb')
     with open(ranked_output_path, 'w') as f:
       if amber_relaxer:
         f.write(relaxed_pdbs[model_name])
@@ -471,7 +472,7 @@ def main(argv):
         model_name=model_name, data_dir=data_dir)
     model_runner = model.RunModel(model_config, model_params,is_training=FLAGS.dropout)
     for i in range(FLAGS.nstruct_start,FLAGS.nstruct+1):#num_predictions_per_model):
-      model_runners[f'{model_name}_{i}'] = model_runner
+      model_runners[f'{model_name}_{FLAGS.suffix}_{i}'] = model_runner
 
   logging.info('Have %d models: %s', len(model_runners),
                list(model_runners.keys()))
