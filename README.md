@@ -1,7 +1,7 @@
-# AlphaFold with aggressive sampline
+# AFsample - AlphaFold with aggressive sampling
 
 This package provides an implementation of the `Wallner` method that was the best 
-method in mulitmer prediction in CASP15.
+method in multimer prediction in CASP15.
 
 It is based on the AlphaFold system developed by DeepMind
 https://github.com/deepmind/alphafold/
@@ -11,13 +11,11 @@ https://github.com/deepmind/alphafold/
 
 The setup is identical to regular AlphaFold. If have already setup of AlphaFold you only need to change the `data_dir` in `run_alphafold.py` to point to the location of `$DOWNLOAD_DIR` containing all the databases and model parameters.
 
-If you are setting up AlphaFold for the first time you can follow the instructions here: https://github.com/deepmind/alphafold/
-
-But a shorter version are included below for simplicity
+If you are setting up AlphaFold for the first time (a shorter version of adapted from: https://github.com/deepmind/alphafold/):
 
 1.  Download genetic databases (see below).
 1.  Download model parameters (see below).
-
+1.  Create a conda environment `conda env create -f afsample.yml`
 
 ### Genetic databases
 
