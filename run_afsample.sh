@@ -37,5 +37,10 @@ python $AF_path/run_alphafold.py $std_flags --model_preset multimer_v2 --fasta_p
 #get the score for all models and return a sorted scorefile.
 python $AF_path/scores_from_json.py $fasta $outfolder/ > $outfolder/scores.sc
 
-
+#Relax the first model N first
+N=5
+for pkl in `head -n $N $outfolder/scores.sc | awk '{print $2}'`
+do
+    python $AF_path/run_relax_from_results_pkl.py $pkl
+done
 

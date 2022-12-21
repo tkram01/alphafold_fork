@@ -23,4 +23,5 @@ for json_file in tqdm.tqdm(glob.glob(output_jsons)):
             print(f'ranking_confidence not found in {json_file}')
 
 for model,score in sorted(scores.items(),key=lambda x:x[1],reverse=True):
-    print(model,score)
+    pkl=model.replace('unrelaxed','result').replace('.pdb','.pkl')
+    print(model,pkl,score)
