@@ -15,9 +15,11 @@ If you are setting up AlphaFold for the first time (a shorter version adapted fr
 
 1.  Download genetic databases (see below).
 1.  Download model parameters, make sure you download multimer_v1 and mulitmer_v2 (see below).
-1.  Create a conda environment `conda env create -f afsample.yml`
-    install `jaxlib >= 0.1.69` that is compatibile with the CUDA version and GPU you have for <!--jaxlib==0.1.69+cuda111-->'
-    https://github.com/google/jax#pip-installation-gpu-cuda
+1.  Create a conda environment `conda env create -f afsample.yml` <!--jaxlib==0.1.69+cuda111 removed-->'
+    
+    If you don't have conda, install Anaconda before continuing, instructions here: https://www.anaconda.com/
+    
+    Activate the environment `conda activate afsample` and install `jaxlib >= 0.1.69` that is compatibile with the CUDA version installed in your system, instructions here: https://github.com/google/jax#pip-installation-gpu-cuda
 
 ### Genetic databases
 
