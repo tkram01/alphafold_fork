@@ -78,7 +78,6 @@ dependencies:
     - immutabledict==2.0.0
     - importlib-metadata==4.8.1
     - jax==0.2.14
-    - jaxlib==0.1.69+cuda111
     - keras==2.6.0
     - keras-nightly==2.5.0.dev2021032900
     - keras-preprocessing==1.1.2
