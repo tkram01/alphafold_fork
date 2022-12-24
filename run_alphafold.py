@@ -157,7 +157,7 @@ flags.DEFINE_boolean('use_precomputed_msas', True, 'Whether to read MSAs that ' 
                      'directory, so it must stay the same between multiple '
                      'runs that are to reuse the MSAs. WARNING: This will not '
                      'check if the sequence, database or configuration have '
-                     'changed.'
+                     'changed.')
 flags.DEFINE_string('suffix','','suffix to all model output, added before model counter.')
 flags.DEFINE_string('input_msa',None,'Input msa to use instead of the default')
 flags.DEFINE_boolean('no_templates',False, 'will not use any template, will be faster than filter by date')
