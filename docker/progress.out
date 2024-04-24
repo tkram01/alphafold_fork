@@ -1,0 +1,31 @@
+I0423 21:09:05.878587 140107878434624 run_docker.py:127] Mounting /data/input -> /mnt/fasta_path_0
+I0423 21:09:05.878835 140107878434624 run_docker.py:127] Mounting /data/af_download_data/uniref90 -> /mnt/uniref90_database_path
+I0423 21:09:05.878983 140107878434624 run_docker.py:127] Mounting /data/af_download_data/mgnify -> /mnt/mgnify_database_path
+I0423 21:09:05.879093 140107878434624 run_docker.py:127] Mounting /data/af_download_data -> /mnt/data_dir
+I0423 21:09:05.879197 140107878434624 run_docker.py:127] Mounting /data/af_download_data/pdb_mmcif/mmcif_files -> /mnt/template_mmcif_dir
+I0423 21:09:05.879310 140107878434624 run_docker.py:127] Mounting /data/af_download_data/pdb_mmcif -> /mnt/obsolete_pdbs_path
+I0423 21:09:05.879439 140107878434624 run_docker.py:127] Mounting /data/af_download_data/pdb70 -> /mnt/pdb70_database_path
+I0423 21:09:05.879557 140107878434624 run_docker.py:127] Mounting /data/af_download_data/uniref30 -> /mnt/uniref30_database_path
+I0423 21:09:05.879675 140107878434624 run_docker.py:127] Mounting /data/af_download_data/bfd -> /mnt/bfd_database_path
+I0423 21:09:10.020890 140107878434624 run_docker.py:269] I0423 21:09:10.019899 140703933804800 templates.py:858] Using precomputed obsolete pdbs /mnt/obsolete_pdbs_path/obsolete.dat.
+I0423 21:09:11.826639 140107878434624 run_docker.py:269] I0423 21:09:11.825915 140703933804800 xla_bridge.py:353] Unable to initialize backend 'tpu_driver': NOT_FOUND: Unable to find driver in registry given worker:
+I0423 21:09:12.028075 140107878434624 run_docker.py:269] I0423 21:09:12.027300 140703933804800 xla_bridge.py:353] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: Interpreter Host CUDA
+I0423 21:09:12.028462 140107878434624 run_docker.py:269] I0423 21:09:12.027771 140703933804800 xla_bridge.py:353] Unable to initialize backend 'tpu': module 'jaxlib.xla_extension' has no attribute 'get_tpu_client'
+I0423 21:09:12.028691 140107878434624 run_docker.py:269] I0423 21:09:12.027993 140703933804800 xla_bridge.py:353] Unable to initialize backend 'plugin': xla_extension has no attributes named get_plugin_device_client. Compile TensorFlow with //tensorflow/compiler/xla/python:enable_plugin_device set to true (defaults to false) to enable this.
+I0423 21:09:24.600878 140107878434624 run_docker.py:269] I0423 21:09:24.600090 140703933804800 run_alphafold.py:526] Have 5 models: ['model_1_pred_0', 'model_2_pred_0', 'model_3_pred_0', 'model_4_pred_0', 'model_5_pred_0']
+I0423 21:09:24.601249 140107878434624 run_docker.py:269] I0423 21:09:24.600294 140703933804800 run_alphafold.py:540] Using random seed 1076386638290203733 for the data pipeline
+I0423 21:09:24.601455 140107878434624 run_docker.py:269] I0423 21:09:24.600575 140703933804800 run_alphafold.py:245] Predicting Lima025-P4_Unique_Seq_top1000_plus_VHH_AF2_T5_embedding_hierchical_labels_selected_for_af2_embeddings_full_aa
+I0423 21:09:24.601692 140107878434624 run_docker.py:269] Traceback (most recent call last):
+I0423 21:09:24.601893 140107878434624 run_docker.py:269] File "/app/alphafold/run_alphafold.py", line 572, in <module>
+I0423 21:09:24.602132 140107878434624 run_docker.py:269] app.run(main)
+I0423 21:09:24.602326 140107878434624 run_docker.py:269] File "/opt/conda/lib/python3.10/site-packages/absl/app.py", line 312, in run
+I0423 21:09:24.602562 140107878434624 run_docker.py:269] _run_main(main, args)
+I0423 21:09:24.602761 140107878434624 run_docker.py:269] File "/opt/conda/lib/python3.10/site-packages/absl/app.py", line 258, in _run_main
+I0423 21:09:24.603005 140107878434624 run_docker.py:269] sys.exit(main(argv))
+I0423 21:09:24.603208 140107878434624 run_docker.py:269] File "/app/alphafold/run_alphafold.py", line 545, in main
+I0423 21:09:24.603434 140107878434624 run_docker.py:269] predict_structure(
+I0423 21:09:24.603613 140107878434624 run_docker.py:269] File "/app/alphafold/run_alphafold.py", line 256, in predict_structure
+I0423 21:09:24.603793 140107878434624 run_docker.py:269] feature_dict = data_pipeline.process(
+I0423 21:09:24.603965 140107878434624 run_docker.py:269] File "/app/alphafold/alphafold/data/pipeline.py", line 156, in process
+I0423 21:09:24.604160 140107878434624 run_docker.py:269] raise ValueError(
+I0423 21:09:24.604334 140107878434624 run_docker.py:269] ValueError: More than one input sequence found in /mnt/fasta_path_0/Lima025-P4_Unique_Seq_top1000_plus_VHH_AF2_T5_embedding_hierchical_labels_selected_for_af2_embeddings_full_aa.fa.
