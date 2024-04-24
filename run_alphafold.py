@@ -283,6 +283,8 @@ def predict_structure(
     t_0 = time.time()
     prediction_result = model_runner.predict(processed_feature_dict,
                                              random_seed=model_random_seed)
+    logging.info("prediction result keys", "".join(prediction_result.keys()) )
+    
     t_diff = time.time() - t_0
     timings[f'predict_and_compile_{model_name}'] = t_diff
     logging.info(
@@ -549,7 +551,7 @@ def main(argv):
         amber_relaxer=amber_relaxer,
         benchmark=FLAGS.benchmark,
         random_seed=random_seed,
-        models_to_relax=FLAGS.models_to_relax,
+        models_to_relax=ModelsToRelax.NONE,
         model_type=model_type,
     )
 

@@ -98,6 +98,17 @@ FLAGS = flags.FLAGS
 
 _ROOT_MOUNT_DIRECTORY = '/mnt/'
 
+#### USER CONFIGURATION ####
+
+# Set to target of scripts/download_all_databases.sh
+DOWNLOAD_DIR = '/data/af_download_data'
+
+# Name of the AlphaFold Docker image.
+docker_image_name = 'alphafold'
+
+# Path to a directory that will store the results.
+output_dir = '/data/output/alphafold'
+
 
 def _create_mount(mount_name: str, path: str) -> Tuple[types.Mount, str]:
   """Create a mount point for each file and directory used by the model."""

@@ -155,7 +155,7 @@ CONFIG = ml_collections.ConfigDict({
             },
             'max_extra_msa': 1024,
             'msa_cluster_features': True,
-            'num_recycle': 3,
+            'num_recycle': 1,
             'reduce_msa_clusters_by_max_templates': False,
             'resample_msa_in_recycling': True,
             'template_features': [
@@ -455,7 +455,7 @@ CONFIG = ml_collections.ConfigDict({
                 'weight': 2.0
             },
         },
-        'num_recycle': 3,
+        'num_recycle': 1,
         'resample_msa_in_recycling': True
     },
 })
@@ -687,7 +687,7 @@ CONFIG_MULTIMER = ml_collections.ConfigDict({
             }
         },
         'num_ensemble_eval': 1,
-        'num_recycle': 20,
+        'num_recycle': 1,
         # A negative value indicates that no early stopping will occur, i.e.
         # the model will always run `num_recycle` number of recycling
         # iterations.  A positive value will enable early stopping if the

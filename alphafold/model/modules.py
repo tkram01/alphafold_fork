@@ -148,7 +148,7 @@ class AlphaFoldIteration(hk.Module):
                is_training,
                compute_loss=False,
                ensemble_representations=False,
-               return_representations=False):
+               returnrepresentations=False):
 
     num_ensemble = jnp.asarray(ensembled_batch['seq_length'].shape[0])
 
@@ -290,7 +290,7 @@ class AlphaFold(hk.Module):
       is_training,
       compute_loss=False,
       ensemble_representations=False,
-      return_representations=False):
+      return_representations=True):
     """Run the AlphaFold model.
 
     Arguments:
